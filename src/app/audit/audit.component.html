@@ -1,0 +1,45 @@
+<h1>Hi !</h1>
+<p>You're logged in with Angular 8!!</p>
+<h3>All login audit :</h3>
+<!-- <ul>
+    <li *ngFor="let audit of audits">
+        <br/><span class="badge badge-primary">{{audit.user}}</span>
+        <br/><span class="badge badge-secondary">{{audit._id}}</span>
+        <br/>Login - {{audit.loginTime}}
+        <br/>Logout - {{audit.logoutTime}}
+        <br/>IP - {{audit.ip}}
+    </li>
+</ul> -->
+<input class="form-control" type="text" name="firstName" [(ngModel)]="firstName"
+(ngModelChange)="Search()" placeholder="Search">
+<div>
+  <select>Select
+    <option>12 Hour Format</option>
+    <option>24 Hour Format</option>
+  </select>
+</div>
+<table class="table table-striped" >
+    <thead>
+        <tr>
+            <th (click)="sort('user')">User <i class="fa fa-sort"></i></th>
+            <th>ID</th>
+            <th>Login Time</th>
+            <th>Logout Time</th>
+            <th>IP</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let audit of audits | paginate: { itemsPerPage: 5, currentPage: page }" >
+        <tr >
+            <td>{{audit.user}}</td>
+            <td>{{audit._id}}</td>
+            <td>{{audit.loginTime}}</td>
+            <td>{{audit.logoutTime}}</td>
+            <td>{{audit.ip}}</td>
+            
+        </tr>         
+    </tbody>
+</table>
+<div>
+    <pagination-controls (pageChange)="page = $event"></pagination-controls> 
+</div>
+
